@@ -7,9 +7,8 @@ import Filter from './Component/Filter';
 import Navbarr from './Component/Navbar';
 import {movies} from './Movies';
 import { useState } from 'react';
-
-//console.log(movies);
-
+import {Routes,Route} from 'react-router-dom';
+import UniqueElement from './Component/UniqueElement';
 
 
 function App() {
@@ -29,15 +28,37 @@ const [search, setsearch] = useState("")
 const [rate, setrate] = useState(1)
 
 
+ //function 
+ const deletCard=(ID)=>{
+  setmovieList(
+    movieList.filter((e)=> e.id !== ID)
+  )
+}
+
+const seen=(ID)=>{
+  setmovieList(
+    movieList.map((el)=> (el.id === ID ? {...el,isDone : !el.isDone }: el ) )
+  )
+}
+
+
   console.log(movieList)
   return (
     <div className="App">
       <Navbarr/>
-      <Filter setsearch={setsearch}  setrate={setrate} rate={rate}/>
-      <Add  addHandler={addHandler} />
-      <MovieList movieList={movieList} search={search}  rate={rate} />
+      
+      <Routes>
+    
+     <Route path='/MovieList' element= { <MovieList  movieList={movieList}  deletCard={deletCard} rate={rate}  seen={seen} search={search}/>} />
+
+     <Route path='/Add' element={<Add Add={Add}/>}/>
+     <Route path='/MovieList/:ID' element={<UniqueElement />}/>
+     </Routes>
+    
     </div>
   );
 }
 
 export default App;
+  
+

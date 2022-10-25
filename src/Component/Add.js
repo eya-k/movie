@@ -11,6 +11,7 @@ function Add({addHandler}) {
   const handleShow = () => setShow(true);
 
   //states to get the input from the user
+  
   const [title, settitle] = useState("")
   const [description, setdescription] = useState("")
   const [imgUrl, setimgUrl] = useState("")
@@ -60,3 +61,11 @@ function Add({addHandler}) {
   );
 }
 export default Add
+
+
+
+
+
+
+    
+   

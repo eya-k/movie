@@ -14,3 +14,4 @@ export default function MovieList({movieList,search, rate}) {
     </div>
   )
 }
+
